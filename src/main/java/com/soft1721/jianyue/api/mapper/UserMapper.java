@@ -1,10 +1,7 @@
 package com.soft1721.jianyue.api.mapper;
 
 import com.soft1721.jianyue.api.entity.User;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 /**
  * Created by 张文旭 on 2019/4/1.
@@ -14,7 +11,7 @@ public interface UserMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "mobile", column = "mobile"),
             @Result(property = "password",column = "password"),
-            @Result(property = "nickname",column = "nicename"),
+            @Result(property = "nickname",column = "nickname"),
             @Result(property = "avatar", column = "avatar"),
             @Result(property = "status", column = "status"),
             @Result(property = "regtime", column = "regtime"),
@@ -28,4 +25,8 @@ public interface UserMapper {
 
     @Select("SELECT * FROM t_user WHERE id = #{id} ")
     User getUserById(int id);
+
+    @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,regtime,status)" +
+            " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{regtime},#{status}) ")
+    void insert(User user);
 }

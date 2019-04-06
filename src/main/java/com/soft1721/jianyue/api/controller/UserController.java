@@ -3,11 +3,9 @@ package com.soft1721.jianyue.api.controller;
 import com.aliyun.oss.OSSClient;
 import com.soft1721.jianyue.api.entity.User;
 import com.soft1721.jianyue.api.entity.dto.UserDTO;
+import com.soft1721.jianyue.api.service.RedisService;
 import com.soft1721.jianyue.api.service.UserService;
-import com.soft1721.jianyue.api.util.MsgConst;
-import com.soft1721.jianyue.api.util.ResponseResult;
-import com.soft1721.jianyue.api.util.StatusConst;
-import com.soft1721.jianyue.api.util.StringUtil;
+import com.soft1721.jianyue.api.util.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,12 +24,21 @@ import java.util.UUID;
 public class UserController {
     @Resource
     private UserService userService;
+    @Resource
+    private RedisService redisService;
 
     @RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
     public ResponseResult getUserById(@PathVariable("id") int id){
         User user = userService.getUserById(id);
         return ResponseResult.success(user);
     }
+    @PutMapping("/nickname")
+    public void updateAvatar(@RequestBody String renickname,int id){
+        User user=userService.getUserById(id);
+        user.setNickname(renickname);
+        userService.updateUser(user);
+    }
+
 
 
     @PostMapping(value = "/sign_in")
@@ -87,5 +94,38 @@ public class UserController {
         user.setAvatar(url.toString());
         userService.updateUser(user);
         return url.toString();
+    }
+    //获取短信验证码接口
+    @PostMapping(value = "/verify")
+    public ResponseResult getVerifyCode(@RequestParam("mobile") String mobile) {
+        User user = userService.getUserByMobile(mobile);
+        if (user != null) {
+            return ResponseResult.error(StatusConst.MOBILE_EXIST, MsgConst.MOBILE_EXIST);
+        } else {
+            String verifyCode = SMSUtil.send(mobile);
+//            String verifyCode = StringUtil.getVerifyCode();
+            System.out.println(verifyCode);
+            redisService.set(mobile, verifyCode);
+            return ResponseResult.success();
+        }
+    }
+//    验证短信码接口
+    @PostMapping(value = "/check")
+    public ResponseResult checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
+        String code = redisService.get(mobile).toString();
+        System.out.println(code + "---");
+        System.out.println(verifyCode);
+        if (code.equals(verifyCode)) {
+            return ResponseResult.success();
+        } else {
+            return ResponseResult.error(StatusConst.VERIFYCODE_ERROR, MsgConst.VERIFYCODE_ERROR);
+        }
+    }
+
+//    注册接口
+    @PostMapping(value = "/sign_up")
+    public ResponseResult signUp(@RequestBody UserDTO userDTO) {
+        userService.signUp(userDTO);
+        return ResponseResult.success();
     }
 }

@@ -39,8 +39,14 @@ public class UserServiceImplTest {
     }
     @Test
     public void getUserById() throws Exception {
-        User user = userService.getUserByMobile("1");
+        User user = userService.getUserById(1);
         System.out.println(user);
     }
-
+    @Test
+    public void signUp() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setMobile("13952214796");
+        userDTO.setPassword("111");
+        userService.signUp(userDTO);
+    }
 }

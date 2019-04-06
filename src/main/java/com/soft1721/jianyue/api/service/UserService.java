@@ -16,4 +16,6 @@ public interface UserService {
     User getUserById(int id);
     //修改用户
     void updateUser(User user);
+    //添加用户
+    void signUp(UserDTO userDTO);
 }
