@@ -11,4 +11,6 @@ public class StatusConst {
     public static final int USER_STATUS_ERROR = 4;
     public static final int MOBILE_EXIST = 5;
     public static final int VERIFYCODE_ERROR = 6;
+    public static final int VERIFYCODE_FAILURE = 7;
+
 }

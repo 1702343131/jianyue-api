@@ -6,6 +6,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by 张文旭 on 2019/4/4.
  */
@@ -19,7 +21,7 @@ public class RedisService {
         RedisSerializer redisSerializer =new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
         ValueOperations<String,Object> vo = redisTemplate.opsForValue();
-        vo.set(key, value);
+        vo.set(key, value,20, TimeUnit.SECONDS);
     }
 
     public Object get(String key) {

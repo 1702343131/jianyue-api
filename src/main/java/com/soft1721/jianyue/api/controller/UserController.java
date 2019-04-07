@@ -112,7 +112,14 @@ public class UserController {
 //    验证短信码接口
     @PostMapping(value = "/check")
     public ResponseResult checkVerifyCode(@RequestParam("mobile") String mobile, @RequestParam("verifyCode") String verifyCode) {
-        String code = redisService.get(mobile).toString();
+        String code = null;
+        try {
+            code = redisService.get(mobile).toString();
+
+        }catch (NullPointerException e){
+            return ResponseResult.error(StatusConst.VERIFYCODE_FAILURE,MsgConst.VERIFYCODE_FAILURE);
+
+        }
         System.out.println(code + "---");
         System.out.println(verifyCode);
         if (code.equals(verifyCode)) {

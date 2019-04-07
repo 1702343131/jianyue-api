@@ -11,4 +11,5 @@ public class MsgConst {
     public static final String USER_STATUS_ERROR = "账号异常";
     public static final String MOBILE_EXIST = "手机号已被注册";
     public static final String VERIFYCODE_ERROR = "验证码错误";
+    public static  final String VERIFYCODE_FAILURE = "验证码失效";
 }
