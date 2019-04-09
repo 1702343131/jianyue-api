@@ -38,6 +38,13 @@ public class UserController {
         user.setNickname(renickname);
         userService.updateUser(user);
     }
+    @PutMapping("/password")
+    public void  updatePassword(@RequestBody String password,int id){
+        User user = userService.getUserById(id);
+        String  base64Pass = StringUtil.getBase64Encoder(password);
+        user.setPassword(base64Pass);
+        userService.updateUser(user);
+    }
 
 
 
