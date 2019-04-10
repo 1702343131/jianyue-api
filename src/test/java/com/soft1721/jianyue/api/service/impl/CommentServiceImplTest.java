@@ -1,6 +1,8 @@
 package com.soft1721.jianyue.api.service.impl;
 
+import com.soft1721.jianyue.api.entity.Comment;
 import com.soft1721.jianyue.api.entity.vo.CommentVO;
+import com.soft1721.jianyue.api.mapper.CommentMapper;
 import com.soft1721.jianyue.api.service.CommentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,4 +30,12 @@ public class CommentServiceImplTest {
         commentVOList.forEach(comment -> System.out.println(comment));
     }
 
+    @Test
+    public void addComment() throws Exception {
+        Comment comment = new Comment();
+        comment.setAId(1);
+        comment.setUId(29);
+        comment.setContent("哈喽");
+        commentService.addComment(comment);
+    }
 }
