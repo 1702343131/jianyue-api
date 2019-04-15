@@ -10,4 +10,6 @@ import java.util.List;
 public interface ImgService {
     //根据文章id查找图片
     List<Img> selectImgsByAId(int aId);
+//    添加图片
+    void insertImg(Img img);
 }

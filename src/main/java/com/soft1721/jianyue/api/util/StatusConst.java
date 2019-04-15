@@ -12,5 +12,8 @@ public class StatusConst {
     public static final int MOBILE_EXIST = 5;
     public static final int VERIFYCODE_ERROR = 6;
     public static final int VERIFYCODE_FAILURE = 7;
-
+    public static  final int FOLLOWED = 8;
+    public static  final int NO_FOLLOWED = 9;
+    public static final  int LIKEED = 10;
+    public  static final  int NO_LIKEED = 11;
 }

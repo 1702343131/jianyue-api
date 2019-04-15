@@ -1,6 +1,7 @@
 package com.soft1721.jianyue.api.service.impl;
 
 import com.soft1721.jianyue.api.entity.Follow;
+import com.soft1721.jianyue.api.entity.vo.FollowVO;
 import com.soft1721.jianyue.api.service.FollowService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -27,6 +30,9 @@ public class FollowServiceImplTest {
 
     @Test
     public void getFollowsByUId() throws Exception {
+        List<FollowVO> followVO = followService.getFollowsByUId(31);
+        followVO.forEach(followVO1 -> System.out.println(followVO1));
+
     }
 
     @Test

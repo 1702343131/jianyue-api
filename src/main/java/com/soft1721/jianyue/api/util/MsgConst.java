@@ -1,5 +1,7 @@
 package com.soft1721.jianyue.api.util;
 
+import sun.reflect.FieldInfo;
+
 /**
  * Created by 张文旭 on 2019/4/1.
  */
@@ -12,4 +14,8 @@ public class MsgConst {
     public static final String MOBILE_EXIST = "手机号已被注册";
     public static final String VERIFYCODE_ERROR = "验证码错误";
     public static  final String VERIFYCODE_FAILURE = "验证码失效";
+    public static  final String FOLLOWED = "关注";
+    public static  final String NO_FOLLOWED = "未关注";
+    public static final  String LIKEED = "喜欢";
+    public static final  String NO_LIKEED = "未喜欢";
 }

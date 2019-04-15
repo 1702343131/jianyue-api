@@ -28,4 +28,11 @@ public class ImgServiceImplTest {
 
     }
 
+    @Test
+    public void insertImg() throws Exception {
+        Img img = new Img();
+        img.setAId(5);
+        img.setImgUrl("");
+        imgService.insertImg(img);
+    }
 }

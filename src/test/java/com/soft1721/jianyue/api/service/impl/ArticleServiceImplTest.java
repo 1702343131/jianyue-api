@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -36,4 +37,24 @@ public class ArticleServiceImplTest {
         System.out.println(articleVO);
     }
 
+    @Test
+    public void insertArticle() throws Exception {
+        Article article =new Article();
+        article.setUId(29);
+        article.setContent("你好");
+        article.setTitle("你好");
+        article.setCreateTime(new Date());
+        articleService.insertArticle(article);
+    }
+
+    @Test
+    public void getArticleByuId() throws Exception {
+        List<ArticleVO> articleVOList = articleService.getArticleByuId(31);
+        articleVOList.forEach(articleVO -> System.out.println(articleVO));
+    }
+
+    @Test
+    public void deteleArticle() throws Exception {
+        articleService.deleteArticle(25);
+    }
 }

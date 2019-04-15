@@ -29,4 +29,6 @@ public interface UserMapper {
     @Insert("INSERT INTO t_user(mobile,password,nickname,avatar,regtime,status)" +
             " VALUES(#{mobile}, #{password}, #{nickname},#{avatar},#{regtime},#{status}) ")
     void insert(User user);
+
+
 }

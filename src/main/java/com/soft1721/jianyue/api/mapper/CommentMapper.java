@@ -3,10 +3,7 @@ package com.soft1721.jianyue.api.mapper;
 import com.soft1721.jianyue.api.entity.Comment;
 import com.soft1721.jianyue.api.entity.vo.CommentVO;
 import net.bytebuddy.asm.Advice;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +25,7 @@ public interface CommentMapper {
 
     @Insert("INSERT INTO t_comment(u_id,a_id,content,comment_time) VALUES(#{uId}, #{aId}, #{content},#{commentTime}) ")
     void addComment(Comment comment);
+
+    @Delete("DELETE FROM t_comment WHERE id = #{id}")
+    void deteleComment(int id);
 }

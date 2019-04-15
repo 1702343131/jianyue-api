@@ -12,7 +12,5 @@ public interface CommentService {
     //根据文章id查询评论
     List<CommentVO> selectCommentsByAId(int aId);
     //添加评论
-
-
     void addComment(Comment comment);
 }
