@@ -19,4 +19,5 @@ public interface ArticleService {
   List<ArticleVO>getArticleByuId(int uId);
   //根据文章id删除文章
     void deleteArticle(int id);
+
 }

@@ -71,4 +71,15 @@ public interface ArticleMapper {
  })
  @Delete("DELETE FROM t_article WHERE id = #{id}")
  void deteleArticle(int id);
+
+ @Results({
+         @Result(column = "id",property = "id"),
+         @Result(column = "u_id",property = "uId"),
+         @Result(column = "title",property = "title"),
+         @Result(column = "content",property = "content"),
+         @Result(column = "create_time",property = "createTime"),
+
+ })
+ @Select("SELECT * FROM t_article ")
+ List<Article> selectAllArticle();
 }
