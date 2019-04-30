@@ -15,6 +15,8 @@ public interface FollowService {
     List<FollowVO> getFollowsByUId(int fromUId);
     //关注
     void insertFollow(Follow follow);
-//取消关注
+    //取消关注
     void deleteFollow(int fromUId, int toUId);
+    //相互关注
+    Follow getFollow1(int fromUId);
 }

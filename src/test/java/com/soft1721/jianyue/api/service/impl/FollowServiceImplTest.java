@@ -48,4 +48,9 @@ public class FollowServiceImplTest {
           followService.deleteFollow(1,2);
     }
 
+    @Test
+    public void getFollow1() throws Exception {
+             Follow follow = followService.getFollow1(29);
+        System.out.println(follow);
+    }
 }

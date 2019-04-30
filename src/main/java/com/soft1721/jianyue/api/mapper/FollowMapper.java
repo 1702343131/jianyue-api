@@ -31,4 +31,12 @@ public interface FollowMapper {
 
     @Delete("DELETE  FROM t_follow WHERE from_uid = #{fromUId} AND to_uid = #{toUId} ")
     void deleteFollow(@Param("fromUId") int fromUId, @Param("toUId") int toUId);
+
+    @Results({
+            @Result(property = "fromUId",column = "from_uid"),
+            @Result(property = "toUId", column = "to_uid"),
+
+    })
+    @Select("SELECT from_uid,to_uid from t_follow a WHERE a.from_uid = #{fromUId} AND EXISTS(SELECT from_uid from t_follow b where b.from_uid = a.to_uid and b.to_uid = #{fromUId}) ")
+    Follow getFollow1(int fromUId);
 }

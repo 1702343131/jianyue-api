@@ -38,4 +38,9 @@ public class FollowController {
         List<FollowVO> followVOList=followService.getFollowsByUId(fromUId);
         return  ResponseResult.success(followVOList);
     }
+    @GetMapping("/xhfollow")
+    public ResponseResult getFollow (@RequestParam("fromUId") Integer fromUId) {
+        Follow follow = followService.getFollow1(fromUId);
+        return  ResponseResult.success(follow);
+    }
 }
